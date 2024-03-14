@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Focousbuddy/Sign Up Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #222224;
+      }
+
+      .error {
+        color: red;
+        margin-top: 5px;
+        font-size: 0.8em;
+      }
+
+      #login-box,
+      #signup-box {
+        width: 300px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="signup-box">
+      <h2>Sign Up</h2>
+      <form id="signup-form">
+        <input type="text" id="new-username" placeholder="Username" />
+        <input type="password" id="new-password" placeholder="Password" />
+        <input
+          type="password"
+          id="confirm-password"
+          placeholder="Confirm Password"
+        />
+        <input type="submit" value="Sign Up" />
+      </form>
+      <div id="signup-error-message" class="error"></div>
+      <p>
+        Already have an account?
+        <a href="/login.html">Login</a>
+      </p>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (document.getElementById("login-form")) {
+          document
+            .getElementById("login-form")
+            .addEventListener("submit", function (event) {
+              event.preventDefault();
+              var username = document.getElementById("username").value;
+              var password = document.getElementById("password").value;
+              var errorMessage = document.getElementById("error-message");
+
+              if (username === "" || password === "") {
+                errorMessage.textContent =
+                  "Please enter both username and password.";
+              } else if (
+                username !== "yourusername" ||
+                password !== "yourpassword"
+              ) {
+                errorMessage.textContent = "Incorrect username or password.";
+              } else {
+                // Here you can redirect the user to another page or perform other actions upon successful login
+                alert("Login successful!");
+              }
+            });
+        }
+
+        if (document.getElementById("signup-form")) {
+          document
+            .getElementById("signup-form")
+            .addEventListener("submit", function (event) {
+              event.preventDefault();
+              var newUsername = document.getElementById("new-username").value;
+              var newPassword = document.getElementById("new-password").value;
+              var confirmPassword =
+                document.getElementById("confirm-password").value;
+              var signupErrorMessage = document.getElementById(
+                "signup-error-message"
+              );
+
+              if (
+                newUsername === "" ||
+                newPassword === "" ||
+                confirmPassword === ""
+              ) {
+                signupErrorMessage.textContent = "Please fill in all fields.";
+              } else if (newPassword !== confirmPassword) {
+                signupErrorMessage.textContent = "Passwords do not match.";
+              } else {
+                alert("Sign up successful!");
+              }
+            });
+        }
+      });
+    </script>
+  </body>
+</html>
